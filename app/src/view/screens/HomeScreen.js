@@ -153,6 +153,7 @@ const HomeScreen = ({navigation}) => {
                     fontSize: 18,
                     color: COLORS.primary,
                     fontWeight: 'bold',
+                    
                   }}>
                   {item.carname}
                 </Text>
