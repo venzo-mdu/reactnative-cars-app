@@ -12,6 +12,8 @@ import Sell from './app/src/view/screens/Sell';
 import Success from './app/src/view/screens/Success';
 import DetailsScreen from './app/src/view/screens/DetailsScreen';
 import Buy from  './app/src/view/screens/Buy';
+import Booklist from  './app/src/view/screens/Booklist';
+import UserScreen from  './app/src/view/screens/UserScreen';
 
 import {
     NavigationParams,
@@ -33,6 +35,9 @@ const App =() =>{
               <Stack.Screen name="succ" component={Success}/>
               <Stack.Screen name="DetailsScreen" component={DetailsScreen}/>
               <Stack.Screen name="addtocart" component={Buy}/>
+              <Stack.Screen name="book" component={Booklist}/>
+              <Stack.Screen name="UserScreen" component={UserScreen}/>
+
              
 
 

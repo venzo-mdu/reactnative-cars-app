@@ -10,7 +10,7 @@ import {Navigation} from 'react-native-navigation';
 
 
 
-const success = ({navigation}) => {
+const Success = ({navigation}) => {
     return(
         <SafeAreaView
         style={{paddingHorizontal: 20, flex: 1, backgroundColor: COLORS.white}}>
@@ -39,4 +39,4 @@ const success = ({navigation}) => {
             </ScrollView>
         </SafeAreaView>
     )}
-    export default success;
+    export default Success;
