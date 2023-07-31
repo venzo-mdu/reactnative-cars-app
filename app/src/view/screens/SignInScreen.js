@@ -52,6 +52,7 @@ const SignInScreen = ({navigation}) => {
     const data = await result.json();
     global.email=email;
     
+    
     if (result.ok) {
       ToastAndroid.show('You Logged In!', ToastAndroid.SHORT);
       navigation.replace('Buy');

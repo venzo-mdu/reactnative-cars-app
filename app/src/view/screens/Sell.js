@@ -60,7 +60,8 @@ const Sell = ({navigation}) => {
       headers: {
         // "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": null
+        // "Authorization": null
+        // 'Authorization': 'Bearer my-token'
       },
       body: data,
     })

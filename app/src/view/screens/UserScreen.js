@@ -37,14 +37,14 @@ const UserScreen= ({navigation}) => {
             style={{height: 130, width: 130,marginLeft:100,marginTop:30}}
 
             />
-            <TextInput style={{fontSize:16,marginTop:30}}>Name: </TextInput>
-            <TextInput style={{fontSize:16,}}>Email: {global.email}</TextInput>
+            <Text style={{fontSize:19,marginTop:40}}>Name:         {global.email}</Text>
+            <Text style={{fontSize:19,marginTop:20}}>Email:         {global.email}</Text>
          </View>
-         
-            <Text style={{fontSize:16,marginTop:20}}>My Cars </Text>
-         
+           <TouchableOpacity>
+            <Text style={{fontSize:19,marginTop:20,borderBottomColor:COLORS.primary,textDecorationLine: 'underline'}} onPress={() => navigation.navigate('mycar')}>My Cars </Text>
+           </TouchableOpacity>
          <View>
-          <Text style={{fontSize:16,marginTop:20}}>My Interests</Text>
+          <Text style={{fontSize:19,marginTop:20,textDecorationLine: 'underline'}}>My Interests</Text>
          </View>
          <View>
          <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>

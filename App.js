@@ -14,6 +14,7 @@ import DetailsScreen from './app/src/view/screens/DetailsScreen';
 import Buy from  './app/src/view/screens/Buy';
 import Booklist from  './app/src/view/screens/Booklist';
 import UserScreen from  './app/src/view/screens/UserScreen';
+import Mycar from './app/src/view/screens/Mycar'
 
 import {
     NavigationParams,
@@ -37,6 +38,7 @@ const App =() =>{
               <Stack.Screen name="addtocart" component={Buy}/>
               <Stack.Screen name="book" component={Booklist}/>
               <Stack.Screen name="UserScreen" component={UserScreen}/>
+             <Stack.Screen name="mycar" component={Mycar}/>
 
              
 
