@@ -20,20 +20,20 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/color';
 import cars from '../../consts/cars';
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 const cardWidth = width / 2 - 20;
-import {useState,useRef} from 'react';
-import {useEffect} from 'react';
+import { useState, useRef } from 'react';
+import { useEffect } from 'react';
 import STYLES from '../../styles';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   // const { username } = route.params;
   // const [username, setName] = useState('');
   const [data, setData] = useState([]);
-  const [search,SetSearch]=useState('');
+  const [search, SetSearch] = useState('');
   const [olddata, setoldData] = useState([]);
   const searchRef = useRef();
-  const [show,setState]=useState(false);
+  const [show, setState] = useState(false);
   // const [visible,setVisible]=useState(false);
 
 
@@ -43,41 +43,48 @@ const HomeScreen = ({navigation}) => {
     let result = await fetch(url);
 
     result = await result.json();
-
+    console.log("resultt is", result)
     setData(result);
+    // console.log("data issssss",setData())
     setoldData(result);
   };
 
   useEffect(() => {
     getAPIData();
   }, []);
-//search
-  const onSearch = text =>{
-    if (text ==''){
+  //search
+  const onSearch = text => {
+    if (text == '') {
       setData(olddata);
     }
-     else{
-    let tempList=data.filter(item=>{
-      return item.carname.toLowerCase().indexOf(text.toLowerCase()) >-1;
-    });
-    setData(tempList);
-  }
+    else {
+      let tempList = data.filter(item => {
+        return item.carname.toLowerCase().indexOf(text.toLowerCase()) > -1;
+      });
+      setData(tempList);
+    }
   };
-//  constructor()
-//  {
-//   super();
-//   this.state={
-//     show:false
-//   }
-  
-//  }
+  //  constructor()
+  //  {
+  //   super();
+  //   this.state={
+  //     show:false
+  //   }
+
+  //  }
+  const sortByPriceAscending = () => {
+    const sortedData = [...data].sort((a, b) => a.year - b.year);
+    console.log("sorted data", sortedData);
+    setData(sortedData);
+  };
+
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <View style={style.header}>
         <View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize: 22}}>Hello!!</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 22 }}>Hello!!</Text>
             <Text
               style={{
                 fontSize: 20,
@@ -88,160 +95,160 @@ const HomeScreen = ({navigation}) => {
               {global.email}
             </Text>
           </View>
-          <Text style={{marginTop: 5, fontSize: 20, color: COLORS.grey}}>
+          <Text style={{ marginTop: 5, fontSize: 20, color: COLORS.grey }}>
             What do you looking for?
           </Text>
-          
+
           <View>
-           <TouchableOpacity>
-         
-              <Icon 
+            <TouchableOpacity>
+
+              <Icon
                 name="tune"
                 size={47}
-                style={{marginTop:45}}
-                onPress={()=>setState(true)}/>
+                style={{ marginTop: 45 }}
+                onPress={() => setState(true)} />
               <Modal
-                   transparent={true}
-                  visible={show}
-                  onRequestClose={()=>setState(false)}
-                  animationType='slide'
-                  presentationStyle='formsheet'>
-                 <View style={{flex:1}}>
-                   <View style={{backgroundColor:COLORS.primary,borderRadius:30,margin:50,padding:40}}>
+                transparent={true}
+                visible={show}
+                onRequestClose={() => setState(false)}
+                animationType='slide'>
+                  // presentationStyle='formsheet'
+                <View style={{ flex: 1 }}>
+                  <View style={{ backgroundColor: '#7CB5F3', borderRadius: 30, margin: 50, padding: 40 }}>
                     <View>
-                      <TouchableOpacity
-                       onPress={()=>{
-                        let tempList = data.sort((a,b)=>
-                        a.carname > b. carname ? 1:-1,);
-                          setData(tempList);
-                          setState(false);
-                           }    }>
-                        <Text style={{borderBottomWidth:0.9,
-                          fontSize:20,width:'100%',
-                          justifyContent:'center'}}>       Sort by Kilometers</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={STYLES.space}></View>
-                    <View>
-                      <TouchableOpacity
-                       onPress={()=>{setData(data.sore((a,b)=> b.price-a.price));
-                        setState(false);}}>
-                      <Text style={{borderBottomWidth:0.9,
-                        width:'100%',
-                        justifyContent:'center',
-                        paddingLeft:20,fontSize:20}}>   Highest to low price</Text>
+                      <TouchableOpacity>
+
+                        <Text style={{
+                          borderBottomWidth: 0.9,
+                          fontSize: 20, width: '100%',
+                          justifyContent: 'center'
+                        }}>       Sort by Kilometers</Text>
                       </TouchableOpacity>
                     </View>
                     <View style={STYLES.space}></View>
                     <View>
                       <TouchableOpacity>
-                      <Text style={{borderBottomWidth:0.9,
-                        fontSize:20,width:'100%',
-                        justifyContent:'center'}}>       Lowest to High price</Text>
+
+                        <Text style={{
+                          borderBottomWidth: 0.9,
+                          width: '100%',
+                          justifyContent: 'center',
+                          paddingLeft: 20, fontSize: 20
+                        }}>   High to low price</Text>
                       </TouchableOpacity>
                     </View>
-                    
                     <View style={STYLES.space}></View>
-                     <Button  title="close" color="red" onPress={()=>setState(false)}></Button>
-                   </View>
-                   
-                 </View>
+                    <View>
+                      <TouchableOpacity>
+                        <Text style={{
+                          borderBottomWidth: 0.9,
+                          fontSize: 20, width: '100%',
+                          justifyContent: 'center'
+                        }}>       Low to High price</Text>
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={STYLES.space}></View>
+                    <Button title="close" color="red" onPress={() => setState(false)}></Button>
+                  </View>
+
+                </View>
 
               </Modal>
-            
-            {/* style={{marginLeft:320}}/> */}
-            
-           </TouchableOpacity>
-        </View>
 
-        {/* filter */}
+              {/* style={{marginLeft:320}}/> */}
+
+            </TouchableOpacity>
+          </View>
+
+          {/* filter */}
         </View>
 
         <View style={style.person}>
           <TouchableOpacity>
-          {/* <Image
+            {/* <Image
             source={require('../../assets/personnew.png')}
             style={{height: 50, width: 50}}
             onPress={() => navigation.navigate('UserScreen')}
           /> */}
-          {/* <Text  style={{height: 50, width: 50}}
+            {/* <Text  style={{height: 50, width: 50}}
             onPress={() => navigation.navigate('UserScreen')}> hello </Text> */}
-          <Icon
+            <Icon
               name="person-outline"
               color={COLORS.primary}
               size={50}
-              style={{marginLeft:50}}
+              style={{ marginLeft: 50 }}
               onPress={() => navigation.navigate('UserScreen')}
             />
-            
+
           </TouchableOpacity>
         </View>
 
         <View style={style.inputContainer}>
           <Icon name="search" size={28} />
           <TextInput
-            style={{flex: 1, fontSize: 18}}
+            style={{ flex: 1, fontSize: 18 }}
             value={search}
             ref={searchRef}
-            onChangeText={txt =>{
+            onChangeText={txt => {
               onSearch(txt);
               SetSearch(txt);
 
             }}
             placeholder="Search for cars"
           />
-          {search == ''? null :(
+          {search == '' ? null : (
             <TouchableOpacity
-               onPress={()=>{
+              onPress={() => {
                 searchRef.current.clear();
                 onSearch('');
                 SetSearch('');
-               }}
+              }}
             >
-                 <Icon 
-                 name="close"                  
-                 />
+              <Icon
+                name="close"
+              />
             </TouchableOpacity>
           )}
-         
+
         </View>
-       
+
       </View>
-     
+
 
       <FlatList
         showsVerticalScrollIndicator={false}
         numColumns={2}
         horizontal={false}
         data={data}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           // <Card car={item} />
           <TouchableHighlight
             underlayColor={COLORS.white}
             activeOpacity={0.9}
-            onPress={() => navigation.navigate('DetailsScreen',item)}>
+            onPress={() => navigation.navigate('DetailsScreen', item)}>
             <View style={style.card}>
-              <View style={{alignItems: 'center', bottom: 1}}>
+              <View style={{ alignItems: 'center', bottom: 1 }}>
                 {/* <Text>hello</Text> */}
 
                 <Image
-                  source={{uri:item.image}}
-                  style={{height: 120, width: 170}}
+                  source={{ uri: item.image }}
+                  style={{ height: 120, width: 170 }}
                 />
               </View>
 
-              <View style={{marginHorizontal: 20}}>
+              <View style={{ marginHorizontal: 20 }}>
                 <Text
                   style={{
                     fontSize: 18,
                     color: COLORS.primary,
                     fontWeight: 'bold',
-                    
+
                   }}>
                   {item.carname}
                 </Text>
 
-                <Text style={{fontSize: 14, color: COLORS.dark, marginTop: 2}}>
+                <Text style={{ fontSize: 14, color: COLORS.dark, marginTop: 2 }}>
                   {item.model}
                 </Text>
               </View>
@@ -249,11 +256,8 @@ const HomeScreen = ({navigation}) => {
               <View
                 style={{
                   marginTop: 10,
-
                   marginHorizontal: 20,
-
                   flexDirection: 'row',
-
                   justifyContent: 'space-between',
                 }}>
                 <Text
@@ -266,6 +270,7 @@ const HomeScreen = ({navigation}) => {
                   {item.year}
                 </Text>
               </View>
+
             </View>
           </TouchableHighlight>
         )}

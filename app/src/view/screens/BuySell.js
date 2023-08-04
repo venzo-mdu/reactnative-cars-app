@@ -51,7 +51,10 @@ const BuySell = ({navigation}) => {
           {/* <Button  title="BUY" onPress={() => navigation.navigate('Home')}>
             {' '}
           </Button> */}
-          <Text onPress={() => navigation.navigate('Home')} style={{backgroundColor:COLORS.primary,textAlign:'center',fontSize:30,height:40,width:90,color:COLORS.white}}>BUY</Text>
+          <Text onPress={() => navigation.navigate('Home')} style={{backgroundColor:COLORS.primary,
+            textAlignVertical: 'center',textAlign:'center',
+            borderRadius:20,fontSize:20,
+            height:50,width:90,color:COLORS.white}}>Buy</Text>
         
           <View style={STYLES.space} />
        
@@ -59,16 +62,26 @@ const BuySell = ({navigation}) => {
             {' '}
           </Button> */}
         
-        <Text onPress={() => navigation.navigate('sell')} style={{backgroundColor:COLORS.primary,textAlign:'center',fontSize:30,height:40,width:90,color:COLORS.white}}>SELL</Text>
+        <Text onPress={() => navigation.navigate('sell')} style={{backgroundColor:COLORS.primary,
+          borderRadius:20,
+          textAlignVertical: 'center',textAlign:'center',
+          fontSize:20,height:50,
+          width:90,color:COLORS.white}}>Sell</Text>
       </View>
       
       <View>
        
-         <Text style={{marginTop:70,marginLeft:20,fontSize:20}}>Popular Brands</Text>
+         <Text style={{marginTop:50,marginLeft:20,fontSize:20}}>Popular Brands</Text>
+         <View style={STYLES.space} />
    
         <View>
+          <TouchableOpacity>
+            
           <Image style={{height:70,width:100,marginLeft:160,marginTop:-17}} source={require('../../assets/maruti.png')}/>
+          
+          </TouchableOpacity>
         </View>
+
         <View>
           <Image style={{height:40,width:50,marginTop:-42,marginLeft:60,position:'absolute'}} source={require('../../assets/honda.png')}/>
         </View>
@@ -79,17 +92,17 @@ const BuySell = ({navigation}) => {
           <Image style={{height:60,width:60,marginLeft:60,marginTop:30}} source={require('../../assets/bmw.pmg.png')}/>
         </View>
         <View>
-          <Image style={{height:50,width:50,marginTop:-130,marginLeft:-50,position:'absolute'}} source={require('../../assets/volks.png')}/>
+          <Image style={{height:50,width:50,marginTop:-130,marginLeft:-80,position:'absolute'}} source={require('../../assets/volks.png')}/>
         </View>
         <View>
-          <Image style={{height:60,width:90,marginTop:-45,marginLeft:-60,position:'absolute'}} source={require('../../assets/toto.png')}/>
+          <Image style={{height:60,width:90,marginTop:-45,marginLeft:-85,position:'absolute'}} source={require('../../assets/toto.png')}/>
         </View>
       
 
       </View>
       <View>
         <Image
-          style={{marginTop: 90, width: 450, marginLeft: -140}}
+          style={{marginTop: 30, width: 450, marginLeft: -140}}
           source={require('../../assets/buysell.png')}
         />
       </View>

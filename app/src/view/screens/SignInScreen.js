@@ -15,6 +15,8 @@ import STYLES from '../../styles';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {Navigation} from 'react-native-navigation';
 import {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // const handleLogin = async () => {
 //     try {
@@ -34,32 +36,59 @@ import {useState} from 'react';
 //     }
 //   };
 
+
+
 const SignInScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const login = async () => {
-    let result = await fetch(
-      'https://cars2-node-app.onrender.com/api/users/login',
-      {
+    const result = await fetch('https://cars2-node-app.onrender.com/api/users/login',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({email, password}),
       },
     );
     const data = await result.json();
-    global.email=email;
+    const authToken = data?.accessToken; 
+    // console.log("authtokrnnnnnn",authToken);
+    await AsyncStorage.setItem('authToken', authToken);
     
+    console.log("access token", authToken?.accessToken);
+    // const authTokenFromAsync = await AsyncStorage.getItem('authToken');
+    // JSON.stringify(authTokenFromAsync);
+    // console.log("async",authTokenFromAsync) 
+
+    global.email=email;
+    console.log("here");
+    console.log("access token", data)
     
     if (result.ok) {
       ToastAndroid.show('You Logged In!', ToastAndroid.SHORT);
+     
       navigation.replace('Buy');
     } else {
       ToastAndroid.show('Invalid Details', ToastAndroid.SHORT);
     }
   };
+
+    // //auth
+    //  handleLogin= async (email, password) => {
+    //   try {
+    //     const token = await login(email, password);
+    //     await AsyncStorage.setItem('authToken', token);
+    //     console.log("token is iikj",JSON.stringify(token));
+    //     // Redirect or do anything else you need after successful login
+    //   } catch (error) {
+    //     // Handle login errors
+    //     console.error('Error during login:', error);  
+    //   }
+    // };
+
+
 
   return (
     <SafeAreaView

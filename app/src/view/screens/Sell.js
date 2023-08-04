@@ -1,19 +1,19 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, View, Text, TextInput, Image, Button} from 'react-native';
+import { SafeAreaView, View, Text, TextInput, Image, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/color';
 import STYLES from '../../styles';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-import {Navigation} from 'react-native-navigation';
-import {launchImageLibrary} from 'react-native-image-picker';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { Navigation } from 'react-native-navigation';
+import { launchImageLibrary } from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-picker';
-import {useState} from 'react';
-import {useEffect} from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
-const Sell = ({navigation}) => {
-  
+const Sell = ({ navigation }) => {
+
 
   const [carname, setCarname] = useState('');
   const [model, setModel] = useState('');
@@ -42,26 +42,27 @@ const Sell = ({navigation}) => {
       model: model,
       year: year,
       price: price,
-      base64Image: "data:image/png;base64,"+image,
+      base64Image: "data:image/png;base64," + image,
       carnumber: carnumber,
-      enginecapacity:enginecapacity,
-      tyre:tyre,
-      fuel:fuel,
-      kilometer:kilometer,
-      powersteering:powersteering,
-      noofowners:noofowners
+      enginecapacity: enginecapacity,
+      tyre: tyre,
+      fuel: fuel,
+      kilometer: kilometer,
+      powersteering: powersteering,
+      noofowners: noofowners
     });
-    console.log("The data ....",data);
+    console.log("The data ....", data);
 
-   
-    
+
+    // const token = await AsyncStorage.getItem('jwtToken');
+
     fetch('https://cars2-node-app.onrender.com/api/cars/', {
       method: 'POST',
       headers: {
         // "Accept": "application/json",
         "Content-Type": "application/json",
         // "Authorization": null
-        // 'Authorization': 'Bearer my-token'
+        Authorization: `Bearer'${token}`,
       },
       body: data,
     })
@@ -82,42 +83,42 @@ const Sell = ({navigation}) => {
 
   return (
     <SafeAreaView
-      style={{paddingHorizontal: 20, flex: 1, backgroundColor: COLORS.white}}>
+      style={{ paddingHorizontal: 20, flex: 1, backgroundColor: COLORS.white }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{flexDirection: 'row', marginTop: 40}}>
-          <Text style={{fontWeight: 'bold', fontSize: 22, color: COLORS.dark}}>
+        <View style={{ flexDirection: 'row', marginTop: 40 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 22, color: COLORS.dark }}>
             CARS
           </Text>
           <Text
-            style={{fontWeight: 'bold', fontSize: 22, color: COLORS.primary}}>
+            style={{ fontWeight: 'bold', fontSize: 22, color: COLORS.primary }}>
             24
           </Text>
           <View style={STYLES.done}>
-          
-          <Button title="DONE" onPress={submit}>
-            {' '}
-          </Button>
+
+            <Button title="DONE" onPress={submit}>
+              {' '}
+            </Button>
+          </View>
         </View>
-        </View>
-        <View style={{marginTop: 30}}>
-          <Text style={{fontSize: 27, fontWeight: 'bold', color: COLORS.dark}}>
+        <View style={{ marginTop: 30 }}>
+          <Text style={{ fontSize: 27, fontWeight: 'bold', color: COLORS.dark }}>
             SELL A CAR
           </Text>
-          <Text style={{fontSize: 19, fontWeight: 'bold', color: COLORS.light}}>
+          <Text style={{ fontSize: 19, fontWeight: 'bold', color: COLORS.light }}>
             Enter Your Details To Continue
           </Text>
         </View>
 
-        <View style={{marginTop: 20}}>
+        <View style={{ marginTop: 20 }}>
           <View>
-            <Text style={{fontWeight: 'bold', fontSize: 17, marginTop: 20}}>
+            <Text style={{ fontWeight: 'bold', fontSize: 17, marginTop: 20 }}>
               {' '}
               Please enter car details..!
             </Text>
           </View>
 
           {/* <Text style={{fontWeight:'bold'}}> Please enter extra details!</Text> */}
-          <View style={{flexDirection: 'row', marginTop: 5}}>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <TextInput
               placeholder="Car Name:"
               style={STYLES.extra}
@@ -131,7 +132,7 @@ const Sell = ({navigation}) => {
               onChangeText={text => setModel(text)}
             />
           </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <TextInput
               placeholder="Price:"
               style={STYLES.extra}
@@ -146,14 +147,14 @@ const Sell = ({navigation}) => {
             />
           </View>
 
-          <View style={{flexDirection: 'row', marginTop: 5}}>
-            <TextInput placeholder="Engine Capacity::"style={STYLES.extra}  value={enginecapacity}
-              onChangeText={text => setEngineCapacity(text)}/>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <TextInput placeholder="Engine Capacity::" style={STYLES.extra} value={enginecapacity}
+              onChangeText={text => setEngineCapacity(text)} />
 
-            <TextInput placeholder="Tyre:" style={STYLES.extra}  value={tyre}
-              onChangeText={text => setTyre(text)}/>
+            <TextInput placeholder="Tyre:" style={STYLES.extra} value={tyre}
+              onChangeText={text => setTyre(text)} />
           </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <TextInput
               placeholder="Year:"
               style={STYLES.extra}
@@ -164,16 +165,16 @@ const Sell = ({navigation}) => {
             <TextInput placeholder="Fuel:" style={STYLES.extra} value={fuel}
               onChangeText={text => setFuel(text)} />
           </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
-            <TextInput placeholder="Kilometer:" style={STYLES.extra}  value={kilometer}
-              onChangeText={text => setKilometer(text)}/>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <TextInput placeholder="Kilometer:" style={STYLES.extra} value={kilometer}
+              onChangeText={text => setKilometer(text)} />
             <TextInput placeholder="Tranmission:" style={STYLES.extra} />
           </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
-            <TextInput placeholder="Power Steering:" style={STYLES.extra}  value={powersteering}
-              onChangeText={text => setPower(text)}/>
-            <TextInput placeholder="No.Of.Owners:" style={STYLES.extra}  value={noofowners}
-              onChangeText={text => setNoofown(text)}/>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <TextInput placeholder="Power Steering:" style={STYLES.extra} value={powersteering}
+              onChangeText={text => setPower(text)} />
+            <TextInput placeholder="No.Of.Owners:" style={STYLES.extra} value={noofowners}
+              onChangeText={text => setNoofown(text)} />
           </View>
         </View>
         {/* <Icon       onPress={openGallery}
@@ -186,9 +187,9 @@ const Sell = ({navigation}) => {
         <TouchableOpacity onPress={openGallery}>
           <Image
             source={require('../../assets/upload.png')}
-            style={{height: 50, width: 50, marginLeft: 150, marginTop: 30}}
-            // value={image}
-            // onChangeText={text => setImage(text)}
+            style={{ height: 50, width: 50, marginLeft: 150, marginTop: 30 }}
+          // value={image}
+          // onChangeText={text => setImage(text)}
           />
         </TouchableOpacity>
 

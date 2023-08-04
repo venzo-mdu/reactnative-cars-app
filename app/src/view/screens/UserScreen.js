@@ -12,12 +12,7 @@ import {
   import {ScrollView} from 'react-native-gesture-handler';
   import STYLES from '../../styles';
 
-
-
-
 const UserScreen= ({navigation}) => {
-    
-
     return(
      <SafeAreaView
       style={{paddingHorizontal: 20, flex: 1, backgroundColor: COLORS.white}}>
@@ -37,13 +32,14 @@ const UserScreen= ({navigation}) => {
             style={{height: 130, width: 130,marginLeft:100,marginTop:30}}
 
             />
-            <Text style={{fontSize:19,marginTop:40}}>Name:         {global.email}</Text>
-            <Text style={{fontSize:19,marginTop:20}}>Email:         {global.email}</Text>
+            <Text style={{fontSize:19,marginTop:40}}>Name:   {global.email}</Text>
+            <Text style={{fontSize:19,marginTop:20}}>Email:   {global.email}</Text>
          </View>
            <TouchableOpacity>
-            <Text style={{fontSize:19,marginTop:20,borderBottomColor:COLORS.primary,textDecorationLine: 'underline'}} onPress={() => navigation.navigate('mycar')}>My Cars </Text>
+            <Text style={{fontSize:19,marginTop:20,borderBottomColor:COLORS.primary,textDecorationLine: 'underline'}} onPress={()=>{navigation.navigate('mycar')}}>My Cars </Text>
            </TouchableOpacity>
          <View>
+          {/* onPress{() => { this.functionOne(); this.functionTwo();}} */}
           <Text style={{fontSize:19,marginTop:20,textDecorationLine: 'underline'}}>My Interests</Text>
          </View>
          <View>
