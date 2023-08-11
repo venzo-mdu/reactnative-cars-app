@@ -104,7 +104,7 @@ const HomeScreen = ({ navigation }) => {
 
               <Icon
                 name="tune"
-                size={47}
+                size={30}
                 style={{ marginTop: 45 }}
                 onPress={() => setState(true)} />
               <Modal

@@ -1,10 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import COLORS from '../consts/color';
-import {Navigation} from 'react-native-navigation';
+import { Navigation } from 'react-native-navigation';
 
 const STYLES = StyleSheet.create({
-  inputContainer: {flexDirection: 'row', marginTop: 20},
-  inputIcon: {marginTop: 15, width: 30, height: 20, position: 'absolute'},
+  inputContainer: { flexDirection: 'row', marginTop: 20, },
+  inputIcon: { marginTop: 15, width: 30, height: 20, position: 'absolute' },
   input: {
     color: COLORS.light,
     paddingLeft: 30,
@@ -15,7 +15,7 @@ const STYLES = StyleSheet.create({
     flex: 1,
     fontSize: 18,
   },
-  
+
   extra: {
     color: COLORS.light,
     paddingLeft: 20,
@@ -39,7 +39,7 @@ const STYLES = StyleSheet.create({
     marginTop: 10,
     fontSize: 70,
   },
-  line: {height: 1, width: 30, backgroundColor: '#a5a5a5'},
+  line: { height: 1, width: 30, backgroundColor: '#a5a5a5' },
   btnSecondary: {
     height: 50,
     borderWidth: 1,
@@ -50,7 +50,7 @@ const STYLES = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  btnImage: {width: 30, height: 20, marginLeft: 5},
+  btnImage: { width: 30, height: 20, marginLeft: 5 },
   tickImage: {
     marginTop: 200,
     marginLeft: 130,
@@ -107,8 +107,8 @@ const STYLES = StyleSheet.create({
     height: 45,
     width: 100,
   },
-  bg: {marginTop: 400, width: 450, marginLeft: -230},
-  book:{
+  bg: { marginTop: 400, width: 450, marginLeft: -230 },
+  book: {
     height: 60,
 
     borderRadius: 2,
@@ -117,18 +117,18 @@ const STYLES = StyleSheet.create({
     marginTop: 70,
     fontSize: 70,
   },
-  done:{
+  done: {
     height: 60,
-    marginTop:-10,
+    marginTop: -10,
     borderRadius: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft:190,
+    marginLeft: 190,
     fontSize: 70,
 
   },
-  space:{
-    width: 20, 
+  space: {
+    width: 20,
     height: 20
   },
   // modalBackGround: {
