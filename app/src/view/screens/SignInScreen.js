@@ -43,7 +43,7 @@ const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const login = async () => {
-    const result = await fetch('https://cars2-node-app.onrender.com/api/users/login', {
+    const result = await fetch('https://ts-nodecar-app.onrender.com/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -53,8 +53,9 @@ const SignInScreen = ({ navigation }) => {
     },
     );
     const data = await result.json();
-    const authToken = data?.accessToken;
-    // console.log("authtokrnnnnnn",authToken);
+    console.log("dataaaaaaaaaaaa", data)
+    const authToken = data?.token;
+    // console.log("authtokrnnnnnn", authToken);
     await AsyncStorage.setItem('authToken', authToken);
 
     console.log("access token", authToken?.accessToken);
@@ -63,9 +64,12 @@ const SignInScreen = ({ navigation }) => {
     // console.log("async",authTokenFromAsync) 
 
     global.email = email;
+    // global.roles = roles;
+    // console.log("roles", roles)
     console.log("here");
     console.log("access token", data)
-    if (password == 'r' && email == 'r') {
+    // console.log("roles checkkkk", data.user.roles)
+    if (data.user.roles == 'checker') {
       navigation.replace('Check');
 
     }
@@ -75,14 +79,14 @@ const SignInScreen = ({ navigation }) => {
       navigation.replace('Buy');
     }
 
-    // if (result.ok) {
-    //   ToastAndroid.show('You Logged In!', ToastAndroid.SHORT);
+    //   if (result.ok) {
+    //     ToastAndroid.show('You Logged In!', ToastAndroid.SHORT);
 
-    //   navigation.replace('Buy');
-    // }
-    //  else {
-    //   ToastAndroid.show('Invalid Details', ToastAndroid.SHORT);
-    // }
+    //     navigation.replace('Buy');
+    //   }
+    //   else {
+    //     ToastAndroid.show('Invalid Details', ToastAndroid.SHORT);
+    //   }
   };
 
   // //auth

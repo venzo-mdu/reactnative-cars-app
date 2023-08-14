@@ -10,6 +10,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-picker';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Sell = ({ navigation }) => {
@@ -25,8 +26,10 @@ const Sell = ({ navigation }) => {
   const [tyre, setTyre] = useState('');
   const [fuel, setFuel] = useState('');
   const [kilometer, setKilometer] = useState('');
+  const [transmission, setTransmission] = useState('');
   const [powersteering, setPower] = useState('');
   const [noofowners, setNoofown] = useState('');
+
 
   const openGallery = async () => {
     console.log('image upload call');
@@ -48,21 +51,20 @@ const Sell = ({ navigation }) => {
       tyre: tyre,
       fuel: fuel,
       kilometer: kilometer,
+      transmission: transmission,
       powersteering: powersteering,
       noofowners: noofowners
     });
     console.log("The data ....", data);
 
 
-    // const token = await AsyncStorage.getItem('jwtToken');
+    const token = await AsyncStorage.getItem('authToken');
 
-    fetch('https://cars2-node-app.onrender.com/api/cars/', {
+    fetch('https://ts-nodecar-app.onrender.com/api/cars/', {
       method: 'POST',
       headers: {
-        // "Accept": "application/json",
         "Content-Type": "application/json",
-        // "Authorization": null
-        Authorization: `Bearer'${token}`,
+        'Authorization': 'Bearer ' + token,
       },
       body: data,
     })
@@ -73,7 +75,7 @@ const Sell = ({ navigation }) => {
         console.log('boddddddy image', image?.length);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("error", error);
       });
     if (carname !== '' && model !== '' && year !== '') {
       //   ToastAndroid.show('Successfully Sold!', ToastAndroid.SHORT);
@@ -168,7 +170,8 @@ const Sell = ({ navigation }) => {
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <TextInput placeholder="Kilometer:" style={STYLES.extra} value={kilometer}
               onChangeText={text => setKilometer(text)} />
-            <TextInput placeholder="Tranmission:" style={STYLES.extra} />
+            <TextInput placeholder="Tranmission:" style={STYLES.extra} value={transmission}
+              onChangeText={text => setTransmission(text)} />
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <TextInput placeholder="Power Steering:" style={STYLES.extra} value={powersteering}

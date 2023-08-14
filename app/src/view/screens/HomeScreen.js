@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
 
 
   const getAPIData = async () => {
-    const url = 'https://cars2-node-app.onrender.com/api/cars/getAll';
+    const url = 'https://ts-nodecar-app.onrender.com/api/cars/getAll';
 
     let result = await fetch(url);
 
@@ -92,7 +92,7 @@ const HomeScreen = ({ navigation }) => {
                 marginLeft: 10,
                 color: COLORS.primary,
               }}>
-              {global.email}
+              {global.username}
             </Text>
           </View>
           <Text style={{ marginTop: 5, fontSize: 20, color: COLORS.grey }}>

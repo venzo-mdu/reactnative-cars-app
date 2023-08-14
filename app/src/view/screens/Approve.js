@@ -11,9 +11,37 @@ import COLORS from '../../consts/color';
 import { ScrollView } from 'react-native-gesture-handler';
 import STYLES from '../../styles';
 import App from '../../../../App';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Approve = ({ navigation, route }) => {
     const item = route.params;
+    // const [userId, setUserId] = useState('');
+    const sub = async () => {
+        try {
+            const token = await AsyncStorage.getItem('authToken');
+            // console.log("userid", userId)
+            const response = await fetch(`https://ts-nodecar-app.onrender.com/api/checker/approve-cars/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                    // Include headers if needed (e.g., authorization)
+                },
+                //   body: JSON.stringify({ name: updatedName }), // Update with the desired data to send
+            });
+
+            if (response.ok) {
+                // Handle success
+            } else {
+                console.error('Error updating user details:', response.status);
+            }
+        } catch (error) {
+            console.error('Error updating user details:', error);
+        }
+    };
+
+
 
     return (
         <SafeAreaView style={{ backgroundColor: COLORS.white }}>
@@ -61,7 +89,7 @@ const Approve = ({ navigation, route }) => {
                     }}>
                     <Button
                         title="APPROVE"
-                        onPress={() => navigation.navigate('addtocart', item)}>
+                        onPress={sub}>
                         {' '}
                     </Button>
                 </View>
