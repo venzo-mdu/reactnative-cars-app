@@ -29,6 +29,12 @@ const Checker = ({ navigation, route }) => {
 
         result = await result.json();
         console.log("resultt is", result)
+        // for (let i = 0; i < result.length; i++) {
+        //     const _id = result[i]._id;
+        //     console.log('Task ID:', _id);
+        //   }
+          
+        // console.log("id onlyyyyy",_id)
         setData(result);
         // console.log("data issssss",setData())
         // console.log("carid", _id)

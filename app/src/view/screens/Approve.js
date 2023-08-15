@@ -21,25 +21,41 @@ const Approve = ({ navigation, route }) => {
         try {
             const token = await AsyncStorage.getItem('authToken');
             // console.log("userid", userId)
-            const response = await fetch(`https://ts-nodecar-app.onrender.com/api/checker/approve-cars/`, {
+            const response = await fetch(`https://ts-nodecar-app.onrender.com/api/checker/approve-cars/${item._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                    // Include headers if needed (e.g., authorization)
+                    
                 },
                 //   body: JSON.stringify({ name: updatedName }), // Update with the desired data to send
             });
 
-            if (response.ok) {
-                // Handle success
-            } else {
-                console.error('Error updating user details:', response.status);
-            }
+            
+            console.log("success",response)
+            navigation.replace('succ');
         } catch (error) {
-            console.error('Error updating user details:', error);
+            console.error('Error updating :', error);
         }
     };
+     const deny = async ()=>{
+        try {
+            const token = await AsyncStorage.getItem('authToken');
+            const response = await fetch(`https://ts-nodecar-app.onrender.com/api/checker/deny-cars/${item._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                    
+                },
+               });
+            console.log("denied",response)
+            navigation.replace('succ');
+        } catch (error) {
+            console.error('Error updating :', error);
+        }
+
+     };
 
 
 
@@ -74,7 +90,7 @@ const Approve = ({ navigation, route }) => {
                 </View>
                 <View>
                     <Text style={{ fontSize: 15, color: COLORS.primary, textAlign: 'center' }}>
-                        The above model car launched in the year {item.year} and had great engine capacity of {item.enginecapacity} only used by {item.noofowners}
+                        The above model car launched in the year{item._id} {item.year} and had great engine capacity of {item.enginecapacity} only used by {item.noofowners}
                         number of owners
                     </Text>
                 </View>
@@ -103,7 +119,7 @@ const Approve = ({ navigation, route }) => {
                     }}>
                     <Button
                         title="DENY"
-                        onPress={() => navigation.navigate('addtocart', item)}>
+                        onPress={deny}>
                         {' '}
                     </Button>
                 </View>

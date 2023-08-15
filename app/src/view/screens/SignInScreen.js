@@ -66,7 +66,7 @@ const SignInScreen = ({ navigation }) => {
     global.email = email;
     // global.roles = roles;
     // console.log("roles", roles)
-    console.log("here");
+  
     console.log("access token", data)
     // console.log("roles checkkkk", data.user.roles)
     if (data.user.roles == 'checker') {

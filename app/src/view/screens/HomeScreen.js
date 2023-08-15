@@ -38,12 +38,20 @@ const HomeScreen = ({ navigation }) => {
 
 
   const getAPIData = async () => {
-    const url = 'https://ts-nodecar-app.onrender.com/api/cars/getAll';
+    const url = 'https://ts-nodecar-app.onrender.com/api/cars';
 
-    let result = await fetch(url);
-
+    let result = await fetch(url,{
+      method: 'GET',
+      headers: {
+          // Accept: 'application/json',
+           'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer ' + token
+      }
+  })
+    
+    
     result = await result.json();
-    console.log("resultt is", result)
+    console.log("resulttm  updatedd", result)
     setData(result);
     // console.log("data issssss",setData())
     setoldData(result);
